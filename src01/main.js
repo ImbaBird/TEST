@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from './App'; // 路由挂载
-import {router} from './router'; // 路由列表
+import Router from './router'; // 路由列表
 // import iView from 'iview';
 // import 'iview/dist/styles/iview.css'; // 使用 CSS
 import ViewUI from 'view-design';
@@ -22,8 +22,8 @@ Vue.use(ViewUI);
 
 new Vue({
   el: '#app',
-  router: router,
-  // store,
+  router: Router,
+  store,
   components: {App}, // 映射组件标签
   template: '<App/>' //指定需要渲染到页面的模板
 })

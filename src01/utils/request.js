@@ -1,7 +1,7 @@
 import axios from 'axios'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
-import {router} from '@/router'
+import router from '@/router'
 
 // 创建一个AXIOS实例
 const service = axios.create({

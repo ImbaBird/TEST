@@ -1,77 +1,94 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-// import vueRsource from 'vue-resource'
+import VueRouter from 'vue-router'
 
-// Vue.use(vueRsource);
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
-  routes: [
-    {
-      path: '/test',
-      name: 'HelloWorld',
-      component: resolve => require(['@/components/HelloWorld.vue'], resolve),  //组件懒加载
+const routes = [
+  {
+    path: '/',
+    meta: {
+      title: 'home'
     },
-    {
-      path: '/login',
-      name: 'Login',
-      component: resolve => require(['@/components/Login.vue'], resolve),  //组件懒加载
+    redirect: '/main',
+  },
+  {
+    path: '/main',
+    component: () => import('../components/Layout'),
+    meta: {
+      title: '八大菜系介绍'
     },
-    {
-      path: '/',
-      name: 'Layout',
-      redirect: '/view1',
-      component: resolve => require(['@/components/Layout.vue'], resolve),  //组件懒加载
-      children: [
-        {
-          path: '/view1',
-          name: 'View1',
-          component: resolve => require(['@/view/view1/view1.vue'], resolve),  //组件懒加载
+    children: [
+      {
+        path: '/main/luCai',
+        component: () => import('../view/view2/view2'),
+        meta: {
+          title: '鲁菜'
         },
-        {
-          path: '/view2',
-          name: 'View2',
-          component: resolve => require(['@/view/view2/view2.vue'], resolve),  //组件懒加载
+        children: [
+          {
+            path: '/main/luCai/history',
+            component: () => import('../view/view3/view3'),
+            meta: {
+              title: '发展历史'
+            },
+            children: [
+              {
+                path: '/main/luCai/history/qinAndHan',
+                component: () => import('../view/view4/view4'),
+                meta: {
+                  title: '秦汉时期'
+                }
+              },
+              {
+                path: '/main/luCai/history/northernWei',
+                component: () => import('../view/view5/view5'),
+                meta: {
+                  title: '北魏时期'
+                }
+              }
+            ]
+          },
+          {
+            path: '/main/luCai/features',
+            component: () => import('../view/view6/view6'),
+            meta: {
+              title: '风味特色'
+            }
+          }
+        ]
+      },
+      {
+        path: '/main/chuanCai',
+        component: () => import('../view/view7/view7'),
+        meta: {
+          title: '川菜'
         },
-        {
-          path: '/view3',
-          name: 'View3',
-          component: resolve => require(['@/view/view3/view3.vue'], resolve)  //组件懒加载
-        },
-        {
-          path: '/view4',
-          name: 'View4',
-          component: resolve => require(['@/view/view4/view4.vue'], resolve)  //组件懒加载
-        },
-        {
-          path: '/view5',
-          name: 'View5',
-          component: resolve => require(['@/view/view5/view5.vue'], resolve)  //组件懒加载
-        },
-        {
-          path: '/view6',
-          name: 'View6',
-          component: resolve => require(['@/view/view6/view6.vue'], resolve)  //组件懒加载
-        },
-        {
-          path: '/view7',
-          name: 'View7',
-          component: resolve => require(['@/view/view7/view7.vue'], resolve)  //组件懒加载
-        },
-        {
-          path: '/view8',
-          name: 'View8',
-          component: resolve => require(['@/view/view8/view8.vue'], resolve)  //组件懒加载
-        },
-        {
-          path: '/view9',
-          name: 'View9',
-          component: resolve => require(['@/view/view9/view9-1.vue'], resolve)  //组件懒加载
-          // meta:{
-          //   title:"xx"
-          // }
-        },
-      ],
-    },
-  ]
+        children: [
+          {
+            path: '/main/chuanCai/introduction',
+            component: () => import('../view/view8/view8'),
+            meta: {
+              title: '川菜概论'
+            }
+          },
+          {
+            path: '/main/chuanCai/history',
+            component: () => import('../view/view9/view9-1'),
+            meta: {
+              title: '发展历史'
+            }
+          }
+        ]
+      }
+    ]
+
+  },
+
+
+]
+
+const router = new VueRouter({
+  routes
 })
+
+export {router, routes}

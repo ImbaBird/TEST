@@ -1,14 +1,11 @@
 <template>
-  <div>
-    4444444444
-  </div>
+  <Icon type="ios-checkmark" />
 </template>
 <script>
   export default {
-    data () {
-      return {
-
-      }
+    data() {
+      return {}
     }
+
   }
 </script>
